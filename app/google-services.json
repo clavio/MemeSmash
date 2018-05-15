@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "850316076205",
+    "firebase_url": "https://memesmash-f80c7.firebaseio.com",
+    "project_id": "memesmash-f80c7",
+    "storage_bucket": "memesmash-f80c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850316076205:android:6e0e457d7ada590a",
+        "android_client_info": {
+          "package_name": "com.ciphra.android.memesmash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850316076205-cg6t0kq99jsuc3r0jli1re8naidd2feo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ciphra.android.memesmash",
+            "certificate_hash": "f8bc074197e1d444017600ab6f85fca450e43700"
+          }
+        },
+        {
+          "client_id": "850316076205-75am52e3id1a7pjj8fijfbncvujitoo0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzEIlMle0PPOj0jnj6Y1RIjm7PKyOLOxU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850316076205-75am52e3id1a7pjj8fijfbncvujitoo0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
