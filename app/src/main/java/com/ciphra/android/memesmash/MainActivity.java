@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,12 +29,17 @@ public class MainActivity extends AppCompatActivity {
     private Button cancelEmail;
     private Button submitLoginEmail;
     private Button cancelLoginEmail;
+    private Button registerWithEmail;
+    private Button registerWithGoogle;
+    private Button registerWithFacebook;
+    private Button cancelRegistration;
     private FirebaseUser user;
 
     private EditText emailEditText;
     private EditText emailPasswordEditText;
     private EditText emailLoginEditText;
     private EditText emailPasswordLoginEditText;
+    private EditText emailPasswordConfirmBox;
 
 
     @Override
@@ -67,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inflateEmailRegistration();
+                inflateRegistrationPicker();
             }
         });
         loginButton = (Button) findViewById(R.id.login_button);
@@ -95,8 +101,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 emailEditText = (EditText) findViewById(R.id.email_registration_box);
                 emailPasswordEditText = (EditText) findViewById(R.id.email_password_box);
+                emailPasswordConfirmBox = (EditText) findViewById(R.id.email_password_confirm_box);
 
-                emailRegistration(emailEditText.getText().toString(), emailPasswordEditText.getText().toString());
+                if(!emailPasswordEditText.getText().toString().equals(emailPasswordConfirmBox.getText().toString())){
+                    Toast.makeText(MainActivity.this, "Passwords do not match",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    emailRegistration(emailEditText.getText().toString(), emailPasswordEditText.getText().toString());
+                }
+
             }
         });
     }
@@ -214,6 +228,44 @@ public class MainActivity extends AppCompatActivity {
                 emailLogin(emailLoginEditText.getText().toString(), emailPasswordLoginEditText.getText().toString());
             }
         });
+    }
+
+    private void inflateRegistrationPicker(){
+        setContentView(R.layout.registration_picker);
+
+        registerWithEmail = (Button) findViewById(R.id.register_with_email_button);
+        registerWithEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inflateEmailLogin();
+            }
+        });
+
+        cancelRegistration = (Button) findViewById(R.id.cancel_registration);
+        cancelRegistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateUI(null);
+            }
+        });
+
+        registerWithGoogle = (Button) findViewById(R.id.register_with_google_button);
+        registerWithGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerWithGoogle();
+            }
+        });
+
+
+    }
+
+
+    private void registerWithGoogle(){
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
     }
 
 }
