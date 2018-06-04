@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         updateUI(currentUser);
     }
 
-    private void updateUI(FirebaseUser currentUser){
+    private void updateUI(Object currentUser){ //TOOOODOOOOO
         if(currentUser == null){
             inflateRegistration();
         }
@@ -266,6 +269,11 @@ public class MainActivity extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
+
     }
 
 }
