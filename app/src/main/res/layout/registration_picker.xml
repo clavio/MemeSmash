@@ -16,11 +16,13 @@
             android:text="@string/register_with_google"
             android:id="@+id/register_with_google_button"/>
 
-        <Button
-            android:layout_width="match_parent"
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_with_facebook"
-            android:id="@+id/register_with_facebook_button"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
 
         <Button
             android:layout_width="match_parent"

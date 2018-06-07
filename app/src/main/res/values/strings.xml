@@ -12,4 +12,6 @@
     <string name="register_with_email">Register with an email address</string>
     <string name="register_with_google">Register with a Google account</string>
     <string name="register_with_facebook">Register with a Facebook account</string>
+    <string name="facebook_app_id">445458542559212</string>
+    <string name="fb_login_protocol_scheme">fb445458542559212</string>
 </resources>
