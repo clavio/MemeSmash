@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
-        callbackManager = CallbackManager.Factory.create();
+       /* callbackManager = CallbackManager.Factory.create();
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onError(FacebookException exception) {
                         // App code
                     }
-                });
+                });*/
 
     }
 
@@ -97,13 +97,15 @@ public class MainActivity extends AppCompatActivity {
         updateUI(currentUser);
     }
 
-    private void updateUI(Object currentUser){ //TOOOODOOOOO
+    private void updateUI(Object currentUser){
         if(currentUser == null){
-            inflateRegistration();
+            Intent intent = new Intent(this, AnonymousMemeActivity.class);
+            startActivity(intent);
+
         }
         else{
-            Toast.makeText(MainActivity.this, "We did it!.",
-                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoggedInMemeActivity.class);
+            startActivity(intent);
         }
     }
 
