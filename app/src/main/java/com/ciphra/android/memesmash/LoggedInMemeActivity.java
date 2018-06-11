@@ -15,7 +15,7 @@ public class LoggedInMemeActivity extends AppCompatActivity {
     private TextView greeting;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
-    private Button logoutButton;
+    private TextView logoutButton;
 
 
 
@@ -27,7 +27,7 @@ public class LoggedInMemeActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         greeting = (TextView) findViewById(R.id.LoggedIn_greeting_textview);
         greeting.setText("Hello, " + user.getDisplayName() + "!");
-        logoutButton = (Button) findViewById(R.id.logout_button);
+        logoutButton = (TextView) findViewById(R.id.logout_button);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
