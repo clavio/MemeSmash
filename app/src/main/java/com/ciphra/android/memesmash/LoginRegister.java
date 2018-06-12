@@ -26,7 +26,7 @@ public class LoginRegister extends AppCompatActivity {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                goToRegister();
             }
         });
     }

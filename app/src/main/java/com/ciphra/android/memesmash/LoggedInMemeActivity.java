@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -38,6 +39,8 @@ public class LoggedInMemeActivity extends AppCompatActivity {
 
     private void logout(){
         FirebaseAuth.getInstance().signOut();
+        LoginManager ln = LoginManager.getInstance();
+        ln.logOut();
         Intent intent = new Intent(this, AnonymousMemeActivity.class);
         startActivity(intent);
     }

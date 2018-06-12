@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inflateRegistration(){
-        setContentView(R.layout.signup_login);
+        //setContentView(R.layout.signup_login);
         registerButton = (Button)findViewById(R.id.register_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inflateRegistrationPicker(){
-        setContentView(R.layout.registration_picker);
+       // setContentView(R.layout.registration_picker);
 
         registerWithEmail = (Button) findViewById(R.id.register_with_email_button);
         registerWithEmail.setOnClickListener(new View.OnClickListener() {
@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       registerWithFacebook = findViewById(R.id.login_button);
+       //registerWithFacebook = findViewById(R.id.login_button);
        registerWithFacebook.setReadPermissions(Arrays.asList(EMAIL));
        registerWithFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
            @Override
