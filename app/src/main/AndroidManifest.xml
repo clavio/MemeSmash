@@ -40,7 +40,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".AnonymousMemeActivity" />
-        <activity android:name=".LoggedInMemeActivity"></activity>
+        <activity android:name=".LoggedInMemeActivity" />
+        <activity android:name=".LoginRegister" />
+        <activity
+            android:name=".LoginPickerActivity"
+            android:label="@string/title_activity_login_picker"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RegistrationPickerActivity"></activity>
     </application>
 
 </manifest>
