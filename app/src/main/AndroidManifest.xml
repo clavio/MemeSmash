@@ -46,7 +46,8 @@
             android:name=".LoginPickerActivity"
             android:label="@string/title_activity_login_picker"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegistrationPickerActivity"></activity>
+        <activity android:name=".RegistrationPickerActivity" />
+        <activity android:name=".EmailRegistrationActivity"></activity>
     </application>
 
 </manifest>

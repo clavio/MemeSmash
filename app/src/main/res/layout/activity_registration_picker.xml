@@ -10,25 +10,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
-            android:layout_width="match_parent"
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/register_with_google_button"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="@string/register_with_google"
-            android:id="@+id/register_with_google_button"/>
+            android:layout_gravity="center_horizontal"
+            android:text="@string/register_with_google" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/facebook_button"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp" />
 
         <Button
-            android:layout_width="match_parent"
+            android:id="@+id/register_with_email_button"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="@string/register_with_email"
-            android:id="@+id/register_with_email_button"/>
+            android:layout_gravity="center_horizontal"
+            android:text="@string/register_with_email" />
 
 
     </LinearLayout>
