@@ -88,7 +88,13 @@ public class RegistrationPickerActivity extends AppCompatActivity {
             }
         });
 
-
+        mEmailButton = findViewById(R.id.register_with_email_button);
+        mEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerWithEmail();
+            }
+        });
         mCancelButton = findViewById(R.id.cancel_registration);
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +134,10 @@ public class RegistrationPickerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    private void registerWithEmail(){
+        Intent intent = new Intent(this, EmailRegistrationActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

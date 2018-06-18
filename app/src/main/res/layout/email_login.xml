@@ -18,7 +18,7 @@
             android:text="@string/email"/>
 
         <EditText
-            android:id="@+id/email_box_login"
+            android:id="@+id/email_registration_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
@@ -36,7 +36,7 @@
             android:text="@string/password"/>
 
         <EditText
-            android:id="@+id/email_password_box_login"
+            android:id="@+id/email_password_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -44,15 +44,59 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:text="@string/confirm_password"/>
+
+        <EditText
+            android:id="@+id/email_password_confirm_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:text="Display name: "/>
+
+        <EditText
+            android:id="@+id/email_display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+
+
+
     <Button
-        android:id="@+id/login_email_submit"
+        android:id="@+id/submit_email_registration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="@string/submit"/>
 
     <Button
-        android:id="@+id/login_email_cancel"
+        android:id="@+id/cancel_email_registration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
