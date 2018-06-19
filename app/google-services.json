@@ -15,12 +15,36 @@
       },
       "oauth_client": [
         {
+          "client_id": "850316076205-8qlo9e3p95h5lgd6knoqv2vq6bomnvej.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ciphra.android.memesmash",
+            "certificate_hash": "93f8c6b0942bad20491da192bdc2f43cdb5de0ef"
+          }
+        },
+        {
+          "client_id": "850316076205-6u2ggnlg4tcill4652q3ijgc48k794tv.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "850316076205-ineg5pal95k9mvu375emap7co71k08mf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ciphra.android.memesmash",
+            "certificate_hash": "85454a76bc0388190aeaf50b454e0849a053d510"
+          }
+        },
+        {
           "client_id": "850316076205-cg6t0kq99jsuc3r0jli1re8naidd2feo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ciphra.android.memesmash",
             "certificate_hash": "f8bc074197e1d444017600ab6f85fca450e43700"
           }
+        },
+        {
+          "client_id": "850316076205-75am52e3id1a7pjj8fijfbncvujitoo0.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "850316076205-75am52e3id1a7pjj8fijfbncvujitoo0.apps.googleusercontent.com",
@@ -40,7 +64,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "850316076205-75am52e3id1a7pjj8fijfbncvujitoo0.apps.googleusercontent.com",
+              "client_id": "850316076205-6u2ggnlg4tcill4652q3ijgc48k794tv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

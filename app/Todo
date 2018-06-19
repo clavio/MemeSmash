@@ -1,0 +1,27 @@
+- Login as an existing user
+-username
+
+-Cache Memes
+-Report abuse, ban users
+-Ranking, rating
+-Hall of fame
+-each users memes
+-see my own memes
+-ads
+-premium
+-create a meme
+-uploading images?  cropping?
+-Save another meme, to phone, to favorites
+-Anonymous and logged in need to be one activity, don't be stupid
+
+
+
+*Make it work, anonymously, without any images (start with ten)
+- Get two randoms from database
+- make the right adjustments
+*Add images to all, make it look alright
+
+DB - right now
+    Score
+    count
+    randoms
