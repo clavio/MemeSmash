@@ -5,21 +5,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Random;
 
 public class AnonymousMemeActivity extends AppCompatActivity {
 
     private TextView mLoginTextView;
-    private Button memeAButton;
+    private ImageView memeAButton;
     private Button memeBButton;
+    private StorageReference mStorageRef;
     Meme memeA;
     Meme memeB;
 
@@ -73,14 +77,17 @@ public class AnonymousMemeActivity extends AppCompatActivity {
         firstMemeRef.addListenerForSingleValueEvent(memeListenerA);
         DatabaseReference secondMemeRef = database.getReference("meme" + String.valueOf(indexTwo));
         secondMemeRef.addListenerForSingleValueEvent(memeListenerB);
-
+        Glide
+                .with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/memesmash-f80c7.appspot.com/o/bing.png?alt=media&token=44046e7b-45cd-4a43-8c23-e5df0500b38c")
+                .into(memeAButton);
     }
 
     ValueEventListener memeListenerA = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
            memeA = (Meme) dataSnapshot.getValue(Meme.class);
-           memeAButton.setText("Id: " + String.valueOf(memeA.getId()) + " Score: " + String.valueOf(memeA.getScore()));
+          // memeAButton.setText("Id: " + String.valueOf(memeA.getId()) + " Score: " + String.valueOf(memeA.getScore()));
         }
 
         @Override

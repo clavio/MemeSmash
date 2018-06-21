@@ -4,6 +4,7 @@ public class Meme {
     private int score;
     private int id;
 
+
     public int getScore() {
         return score;
     }

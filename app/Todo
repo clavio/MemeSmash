@@ -13,15 +13,9 @@
 -uploading images?  cropping?
 -Save another meme, to phone, to favorites
 -Anonymous and logged in need to be one activity, don't be stupid
+-need to have an accurate count for total memes
 
 
-
-*Make it work, anonymously, without any images (start with ten)
-- Get two randoms from database
-- make the right adjustments
 *Add images to all, make it look alright
-
-DB - right now
-    Score
-    count
-    randoms
+    -Dynamically load an image
+    -Make it look good
