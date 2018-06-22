@@ -12,10 +12,7 @@
 -create a meme
 -uploading images?  cropping?
 -Save another meme, to phone, to favorites
--Anonymous and logged in need to be one activity, don't be stupid
+-Anonymous and logged in need to be one activity, don't be stupid - must be logged in
 -need to have an accurate count for total memes
-
-
-*Add images to all, make it look alright
-    -Dynamically load an image
-    -Make it look good
+-Make it work in landscape
+-make it look better :)

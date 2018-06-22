@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.Random;
@@ -22,7 +23,7 @@ public class AnonymousMemeActivity extends AppCompatActivity {
 
     private TextView mLoginTextView;
     private ImageView memeAButton;
-    private Button memeBButton;
+    private ImageView memeBButton;
     private StorageReference mStorageRef;
     Meme memeA;
     Meme memeB;
@@ -53,7 +54,7 @@ public class AnonymousMemeActivity extends AppCompatActivity {
             }
 
         });
-
+      //  loadMemes();
         setTwoMemes();
 
     }
@@ -69,25 +70,24 @@ public class AnonymousMemeActivity extends AppCompatActivity {
         int indexTwo = 0;
 
         while(indexOne == indexTwo){
-            indexOne = random.nextInt(100);
-            indexTwo = random.nextInt(100);
+            indexOne = random.nextInt(10);
+            indexTwo = random.nextInt(10);
         }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference firstMemeRef = database.getReference("meme" + String.valueOf(indexOne));
         firstMemeRef.addListenerForSingleValueEvent(memeListenerA);
         DatabaseReference secondMemeRef = database.getReference("meme" + String.valueOf(indexTwo));
         secondMemeRef.addListenerForSingleValueEvent(memeListenerB);
-        Glide
-                .with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/memesmash-f80c7.appspot.com/o/bing.png?alt=media&token=44046e7b-45cd-4a43-8c23-e5df0500b38c")
-                .into(memeAButton);
     }
 
     ValueEventListener memeListenerA = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
            memeA = (Meme) dataSnapshot.getValue(Meme.class);
-          // memeAButton.setText("Id: " + String.valueOf(memeA.getId()) + " Score: " + String.valueOf(memeA.getScore()));
+            Glide
+                    .with(AnonymousMemeActivity.this)
+                    .load(memeA.getPictureId())
+                    .into(memeAButton);
         }
 
         @Override
@@ -100,8 +100,10 @@ public class AnonymousMemeActivity extends AppCompatActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             memeB = dataSnapshot.getValue(Meme.class);
-            memeBButton.setText("Id: " + String.valueOf(memeB.getId()) + " Score: " + String.valueOf(memeB.getScore()));
-        }
+            Glide
+                    .with(AnonymousMemeActivity.this)
+                    .load(memeB.getPictureId())
+                    .into(memeBButton);        }
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
@@ -140,5 +142,18 @@ public class AnonymousMemeActivity extends AppCompatActivity {
         setTwoMemes();
     }
 
+
+    public void loadMemes(){
+        for (int i = 0; i < 10; ++i){
+            mStorageRef = FirebaseStorage.getInstance().getReference();
+            StorageReference memeRef = mStorageRef.child("images/rivers.jpg");
+
+            String location = "gs://memesmash-f80c7.appspot.com/"+String.valueOf(i)+".jpg";
+            Meme tempMeme = new Meme(i, 1000, location);
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("meme" + String.valueOf(i));
+            myRef.setValue(tempMeme);
+        }
+    }
 
 }

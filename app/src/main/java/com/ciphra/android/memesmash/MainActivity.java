@@ -99,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(Object currentUser){
         if(currentUser == null){
-            Intent intent = new Intent(this, AnonymousMemeActivity.class);
+            Intent intent = new Intent(this, RegistrationPickerActivity.class);
             startActivity(intent);
 
         }
         else{
-            Intent intent = new Intent(this, LoggedInMemeActivity.class);
+            Intent intent = new Intent(this, AnonymousMemeActivity.class);
             startActivity(intent);
         }
     }
