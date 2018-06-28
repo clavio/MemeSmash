@@ -3,6 +3,7 @@ package com.ciphra.android.memesmash;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -74,15 +75,32 @@ public class AnonymousMemeActivity extends AppCompatActivity {
             indexTwo = random.nextInt(10);
         }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference rootRef = database.getReference();
+        rootRef.addListenerForSingleValueEvent(getMemeCount);
+
         DatabaseReference firstMemeRef = database.getReference("meme" + String.valueOf(indexOne));
         firstMemeRef.addListenerForSingleValueEvent(memeListenerA);
         DatabaseReference secondMemeRef = database.getReference("meme" + String.valueOf(indexTwo));
         secondMemeRef.addListenerForSingleValueEvent(memeListenerB);
     }
 
+    ValueEventListener getMemeCount = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+
+            Log.i("Meme Count", String.valueOf(dataSnapshot.getKey()));
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+
     ValueEventListener memeListenerA = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+
            memeA = (Meme) dataSnapshot.getValue(Meme.class);
             Glide
                     .with(AnonymousMemeActivity.this)
@@ -144,15 +162,18 @@ public class AnonymousMemeActivity extends AppCompatActivity {
 
 
     public void loadMemes(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference rootRef = database.getReference();
+        DatabaseReference memes = rootRef.child("memes");
+
         for (int i = 0; i < 10; ++i){
             mStorageRef = FirebaseStorage.getInstance().getReference();
-            StorageReference memeRef = mStorageRef.child("images/rivers.jpg");
+            //StorageReference memeRef = mStorageRef.child("images/rivers.jpg");
 
             String location = "gs://memesmash-f80c7.appspot.com/"+String.valueOf(i)+".jpg";
-            Meme tempMeme = new Meme(i, 1000, location);
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("meme" + String.valueOf(i));
-            myRef.setValue(tempMeme);
+            DatabaseReference myRef = memes.push();
+            myRef.setValue(new Meme(i, 1000, location));
+
         }
     }
 

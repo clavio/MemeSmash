@@ -10,9 +10,16 @@
 -ads
 -premium
 -create a meme
--uploading images?  cropping?
 -Save another meme, to phone, to favorites
 -Anonymous and logged in need to be one activity, don't be stupid - must be logged in
 -need to have an accurate count for total memes
 -Make it work in landscape
 -make it look better :)
+
+
+-uploading images?  cropping?
+
+
+
+-Give each meme a unique Id
+-pull down the meme by Id sort
