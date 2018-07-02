@@ -1,15 +1,16 @@
 package com.ciphra.android.memesmash;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +26,11 @@ public class AnonymousMemeActivity extends AppCompatActivity {
     private TextView mLoginTextView;
     private ImageView memeAButton;
     private ImageView memeBButton;
+
+    private boolean memeASettable = true;
+    private boolean memeBSettable = true;
     private StorageReference mStorageRef;
+    private int memeCount = 0;
     Meme memeA;
     Meme memeB;
 
@@ -56,7 +61,7 @@ public class AnonymousMemeActivity extends AppCompatActivity {
 
         });
       //  loadMemes();
-        setTwoMemes();
+        updateCount();
 
     }
 
@@ -65,30 +70,95 @@ public class AnonymousMemeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void updateCount(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference fatherMeme = database.getReference("memes");
+        fatherMeme.addListenerForSingleValueEvent(getMemeCount);
+    }
+
+
     public void setTwoMemes(){
+        memeASettable = true;
+        memeBSettable = true;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         Random random = new Random();
         int indexOne = 0;
         int indexTwo = 0;
 
         while(indexOne == indexTwo){
-            indexOne = random.nextInt(10);
-            indexTwo = random.nextInt(10);
+            indexOne = random.nextInt(memeCount);
+            indexTwo = random.nextInt(memeCount);
         }
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference rootRef = database.getReference();
-        rootRef.addListenerForSingleValueEvent(getMemeCount);
+        DatabaseReference fatherMeme = database.getReference("memes");
+        fatherMeme.orderByKey().limitToLast(indexOne + 1).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                    if(memeASettable){
+                        DatabaseReference firstMemeRef = dataSnapshot.getRef();
+                        firstMemeRef.addListenerForSingleValueEvent(memeListenerA);
+                        memeASettable = false;
+                    }
+            }
 
-        DatabaseReference firstMemeRef = database.getReference("meme" + String.valueOf(indexOne));
-        firstMemeRef.addListenerForSingleValueEvent(memeListenerA);
-        DatabaseReference secondMemeRef = database.getReference("meme" + String.valueOf(indexTwo));
-        secondMemeRef.addListenerForSingleValueEvent(memeListenerB);
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference motherMeme = database.getReference("memes");
+        motherMeme.orderByKey().limitToLast(indexTwo + 1).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                if(memeBSettable){
+                    DatabaseReference firstMemeRef = dataSnapshot.getRef();
+                    firstMemeRef.addListenerForSingleValueEvent(memeListenerB);
+                    memeBSettable = false;
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
-
     ValueEventListener getMemeCount = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-
-            Log.i("Meme Count", String.valueOf(dataSnapshot.getKey()));
+            memeCount = (int) dataSnapshot.getChildrenCount();
+            setTwoMemes();
         }
 
         @Override
@@ -102,6 +172,7 @@ public class AnonymousMemeActivity extends AppCompatActivity {
         public void onDataChange(DataSnapshot dataSnapshot) {
 
            memeA = (Meme) dataSnapshot.getValue(Meme.class);
+           memeA.setId((String) dataSnapshot.getKey());
             Glide
                     .with(AnonymousMemeActivity.this)
                     .load(memeA.getPictureId())
@@ -118,6 +189,7 @@ public class AnonymousMemeActivity extends AppCompatActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             memeB = dataSnapshot.getValue(Meme.class);
+            memeB.setId(dataSnapshot.getKey());
             Glide
                     .with(AnonymousMemeActivity.this)
                     .load(memeB.getPictureId())
@@ -152,12 +224,14 @@ public class AnonymousMemeActivity extends AppCompatActivity {
             memeB.setScore(tempMemeBScore+scoreChange);
         }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference referenceA = database.getReference("meme" + String.valueOf(memeA.getId()));
-        referenceA.setValue(memeA);
+        DatabaseReference referenceA = database.getReference("memes");
+        DatabaseReference childRef = referenceA.child(memeA.getId());
+        childRef.setValue(memeA);
 
-        DatabaseReference referenceB = database.getReference("meme" + String.valueOf(memeB.getId()));
-        referenceB.setValue(memeB);
-        setTwoMemes();
+        DatabaseReference referenceB = database.getReference("memes" );
+        DatabaseReference childRefB = referenceA.child(memeB.getId());
+        childRefB.setValue(memeB);
+        updateCount();
     }
 
 
@@ -172,7 +246,7 @@ public class AnonymousMemeActivity extends AppCompatActivity {
 
             String location = "gs://memesmash-f80c7.appspot.com/"+String.valueOf(i)+".jpg";
             DatabaseReference myRef = memes.push();
-            myRef.setValue(new Meme(i, 1000, location));
+            myRef.setValue(new Meme("i", 1000, location));
 
         }
     }

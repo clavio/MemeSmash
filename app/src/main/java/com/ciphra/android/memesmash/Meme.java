@@ -2,7 +2,7 @@ package com.ciphra.android.memesmash;
 
 public class Meme {
     private int score;
-    private int id;
+    private String id;
     private String pictureId;
 
 
@@ -14,15 +14,15 @@ public class Meme {
         this.score = score;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Meme(int id, int score, String pictureId){
+    public Meme(String id, int score, String pictureId){
         this.id = id;
         this.score = score;
         this.pictureId = pictureId;
