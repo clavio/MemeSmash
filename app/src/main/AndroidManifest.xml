@@ -39,15 +39,14 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".AnonymousMemeActivity" />
-        <activity android:name=".LoggedInMemeActivity" />
-        <activity android:name=".LoginRegister" />
+        <activity android:name=".MemeActivity" />
         <activity
             android:name=".LoginPickerActivity"
             android:label="@string/title_activity_login_picker"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegistrationPickerActivity" />
-        <activity android:name=".EmailRegistrationActivity"></activity>
+        <activity android:name=".EmailRegistrationActivity" />
+        <activity android:name=".MemeUploadActivity"></activity>
     </application>
 
 </manifest>

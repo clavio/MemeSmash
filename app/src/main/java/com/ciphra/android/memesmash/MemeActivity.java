@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,15 +24,19 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.Random;
 
-public class AnonymousMemeActivity extends AppCompatActivity {
+public class MemeActivity extends AppCompatActivity {
 
     private TextView mLoginTextView;
+    private TextView mCreateMemeView;
     private ImageView memeAButton;
     private ImageView memeBButton;
 
     private boolean memeASettable = true;
     private boolean memeBSettable = true;
     private StorageReference mStorageRef;
+    private FirebaseUser user;
+    private FirebaseAuth mAuth;
+
     private int memeCount = 0;
     Meme memeA;
     Meme memeB;
@@ -38,6 +45,8 @@ public class AnonymousMemeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anonymous_meme);
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         memeAButton = findViewById(R.id.anonymous_memebutton_a);
         memeAButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,20 +62,21 @@ public class AnonymousMemeActivity extends AppCompatActivity {
             }
         });
         mLoginTextView = findViewById(R.id.anonymous_greeting_textview);
-        mLoginTextView.setOnClickListener(new View.OnClickListener() {
+        mLoginTextView.setText("Hello, " + user.getDisplayName() + "!");
+        mCreateMemeView = findViewById(R.id.create_a_meme);
+        mCreateMemeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goLogin();
+                createAMeme();
             }
-
         });
       //  loadMemes();
         updateCount();
 
     }
 
-    public void goLogin(){
-        Intent intent = new Intent(this, LoginRegister.class);
+    public void createAMeme(){
+        Intent intent = new Intent(this, MemeUploadActivity.class);
         startActivity(intent);
     }
 
@@ -174,7 +184,7 @@ public class AnonymousMemeActivity extends AppCompatActivity {
            memeA = (Meme) dataSnapshot.getValue(Meme.class);
            memeA.setId((String) dataSnapshot.getKey());
             Glide
-                    .with(AnonymousMemeActivity.this)
+                    .with(MemeActivity.this)
                     .load(memeA.getPictureId())
                     .into(memeAButton);
         }
@@ -191,7 +201,7 @@ public class AnonymousMemeActivity extends AppCompatActivity {
             memeB = dataSnapshot.getValue(Meme.class);
             memeB.setId(dataSnapshot.getKey());
             Glide
-                    .with(AnonymousMemeActivity.this)
+                    .with(MemeActivity.this)
                     .load(memeB.getPictureId())
                     .into(memeBButton);        }
 
@@ -234,6 +244,13 @@ public class AnonymousMemeActivity extends AppCompatActivity {
         updateCount();
     }
 
+    private void logout(){
+        FirebaseAuth.getInstance().signOut();
+        LoginManager ln = LoginManager.getInstance();
+        ln.logOut();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     public void loadMemes(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();

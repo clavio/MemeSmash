@@ -1,19 +1,24 @@
-- Login as an existing user
--username
-
--Cache Memes
 -Report abuse, ban users
 -Ranking, rating
 -Hall of fame
 -each users memes
--see my own memes
 -ads
 -premium
--create a meme *
--Save another meme, to phone, to favorites
--Anonymous and logged in need to be one activity, don't be stupid - must be logged in
 -Make it work in landscape
 -make it look better :) *
+-button to full screen a meme
+    -Show me creator (possibly other information?)
 
+Login as an existing user - email (maybe not?)
+    -username
 
--uploading images?  cropping?
+profile
+        -logout (? maybe not?  Maybe in profile?)
+        -see my own memes
+        -see my favorite memes
+
+-create a meme
+    -uploading images?  cropping?
+    -Cache Memes
+
+-Save meme to phone

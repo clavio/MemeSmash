@@ -4,7 +4,7 @@ public class Meme {
     private int score;
     private String id;
     private String pictureId;
-
+    private String userId;
 
     public int getScore() {
         return score;
@@ -36,5 +36,13 @@ public class Meme {
 
     public void setPictureId(String pictureId) {
         this.pictureId = pictureId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

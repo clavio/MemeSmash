@@ -3,7 +3,6 @@ package com.ciphra.android.memesmash;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -104,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else{
-            Intent intent = new Intent(this, AnonymousMemeActivity.class);
+            Intent intent = new Intent(this, MemeActivity.class);
             startActivity(intent);
         }
     }

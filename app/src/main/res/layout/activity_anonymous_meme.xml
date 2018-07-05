@@ -11,6 +11,13 @@
         android:text="@string/anonymous_greeting"
         android:id="@+id/anonymous_greeting_textview"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="@string/create_a_meme"
+        android:id="@+id/create_a_meme"/>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
