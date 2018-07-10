@@ -1,7 +1,6 @@
 -Report abuse, ban users
 -Ranking, rating
 -Hall of fame
--each users memes
 -ads
 -premium
 -Make it work in landscape
@@ -13,9 +12,7 @@ Login as an existing user - email (maybe not?)
     -username
 
 profile
-        -logout (? maybe not?  Maybe in profile?)
-        -see my own memes
-        -see my favorite memes
+        -see my favorite memes <- this is going to be a little bit tough, probably going to come in a future release
 
 -create a meme
     -cropping?
@@ -23,4 +20,4 @@ profile
 
 -Save meme to phone
 
--offline
+-offline - It's fucked

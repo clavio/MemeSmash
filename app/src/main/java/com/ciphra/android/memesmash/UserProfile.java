@@ -14,6 +14,7 @@ public class UserProfile extends AppCompatActivity {
     private Button logoutButton;
     private Button changeNameButton;
     private Button backButton;
+    private Button myMemesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,23 @@ public class UserProfile extends AppCompatActivity {
                 goBack();
             }
         });
+        myMemesButton = findViewById(R.id.my_memes_button);
+        myMemesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMyMemes();
+            }
+        });
 
     }
 
     private void goToNameChange(){
         Intent intent = new Intent(this, ChangeUsernameActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToMyMemes(){
+        Intent intent = new Intent(this, OwnMemesActivity.class);
         startActivity(intent);
     }
 

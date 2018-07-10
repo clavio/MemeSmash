@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -86,8 +88,10 @@ public class MemeUploadActivity extends AppCompatActivity {
                 DatabaseReference memes = rootRef.child("memes");
                 mStorageRef = FirebaseStorage.getInstance().getReference();
                 myRef = memes.push();
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
                 thisMeme = new Meme("i", 1000, null);
-
+                thisMeme.setUserId(user.getUid());
 
                 //upload image
 
