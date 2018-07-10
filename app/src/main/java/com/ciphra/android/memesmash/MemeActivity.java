@@ -63,6 +63,12 @@ public class MemeActivity extends AppCompatActivity {
         });
         mLoginTextView = findViewById(R.id.anonymous_greeting_textview);
         mLoginTextView.setText("Hello, " + user.getDisplayName() + "!");
+        mLoginTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToProfile();
+            }
+        });
         mCreateMemeView = findViewById(R.id.create_a_meme);
         mCreateMemeView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +78,8 @@ public class MemeActivity extends AppCompatActivity {
         });
       //  loadMemes();
         updateCount();
+
+
 
     }
 
@@ -244,15 +252,12 @@ public class MemeActivity extends AppCompatActivity {
         updateCount();
     }
 
-    private void logout(){
-        FirebaseAuth.getInstance().signOut();
-        LoginManager ln = LoginManager.getInstance();
-        ln.logOut();
-        Intent intent = new Intent(this, MainActivity.class);
+    private void goToProfile(){
+        Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
     }
 
-    public void loadMemes(){
+    public void loadMemes(){ //do not delete, loads memes for debug
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference rootRef = database.getReference();
         DatabaseReference memes = rootRef.child("memes");

@@ -3,6 +3,7 @@
     <string name="login">Login</string>
     <string name="sign_up">Retister new user</string>
     <string name="cancel">Cancel</string>
+    <string name="back">Back</string>
     <string name="submit">Submit</string>
     <string name="email">Email: </string>
     <string name="password">Password: </string>
@@ -17,6 +18,11 @@
     <string name="anonymous_greeting">You are not logged in - tap here to signin/register</string>
     <string name="report_this_meme">Report this meme...</string>
     <string name="create_a_meme">Click here to create a meme!</string>
+    <string name="my_memes">View Your Memes</string>
+    <string name="favorite_memes">View Your Favorite Memes</string>
+    <string name="change_name">Change Your Display Name...</string>
+    <string name="enter_new_name">Enter your new username: </string>
+    <string name="confirm_new_name">Confirm your new username: </string>
     <string name="logout">Logout...</string>
 
     <!-- TODO: Remove or change this placeholder text -->
