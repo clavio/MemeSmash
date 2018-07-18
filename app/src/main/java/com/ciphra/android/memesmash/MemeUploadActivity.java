@@ -68,6 +68,11 @@ public class MemeUploadActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        if(data == null){
+            Intent intent = new Intent(getApplicationContext(), MemeActivity.class);
+            startActivity(intent);
+            return;
+        }
         if (requestCode == PICK_IMAGE) {
             Uri selectedImage = data.getData();
             Bitmap bmp = null;
