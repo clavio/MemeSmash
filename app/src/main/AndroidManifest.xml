@@ -48,9 +48,10 @@
         <activity android:name=".RegistrationPickerActivity" />
         <activity android:name=".EmailRegistrationActivity" />
         <activity android:name=".MemeUploadActivity" />
-        <activity android:name=".UserProfile"></activity>
-        <activity android:name=".ChangeUsernameActivity"></activity>
-        <activity android:name=".OwnMemesActivity"></activity>
+        <activity android:name=".UserProfile" />
+        <activity android:name=".ChangeUsernameActivity" />
+        <activity android:name=".OwnMemesActivity" />
+        <activity android:name=".TopMemes"></activity>
     </application>
 
 </manifest>

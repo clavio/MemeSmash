@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -28,6 +27,7 @@ public class MemeActivity extends AppCompatActivity {
 
     private TextView mLoginTextView;
     private TextView mCreateMemeView;
+    private TextView mTopMemes;
     private ImageView memeAButton;
     private ImageView memeBButton;
 
@@ -44,7 +44,7 @@ public class MemeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anonymous_meme);
+        setContentView(R.layout.activity_meme);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         memeAButton = findViewById(R.id.anonymous_memebutton_a);
@@ -76,11 +76,23 @@ public class MemeActivity extends AppCompatActivity {
                 createAMeme();
             }
         });
+        mTopMemes = findViewById(R.id.see_top_memes);
+        mTopMemes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewTopMemes();
+            }
+        });
       //  loadMemes();
         updateCount();
 
 
 
+    }
+
+    public void viewTopMemes(){
+        Intent intent = new Intent(this, TopMemes.class);
+        startActivity(intent);
     }
 
     public void createAMeme(){

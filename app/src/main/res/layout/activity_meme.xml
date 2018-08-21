@@ -7,16 +7,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp"
+        android:padding="8dp"
         android:text="@string/anonymous_greeting"
         android:id="@+id/anonymous_greeting_textview"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp"
+        android:padding="8dp"
         android:text="@string/create_a_meme"
         android:id="@+id/create_a_meme"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/top_memes"
+        android:id="@+id/see_top_memes"/>
 
     <ImageView
         android:layout_width="match_parent"
